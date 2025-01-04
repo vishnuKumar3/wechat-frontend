@@ -17,7 +17,7 @@ export default function ChatWidget({chatWidgetRef, chatBoxRef, setMessage, isApi
     }
 
     return(
-        <div ref={chatWidgetRef} className="rounded-md z-20 zeroOpacity flex flex-col" sx={{width:{xs:"95%",md:"380px"}}} style={{position:"fixed",bottom:"20px",right:"20px",background:"white",boxShadow:"1px 1px 4px black"}}>
+        <div ref={chatWidgetRef} className="rounded-md z-20 zeroOpacity flex flex-col w-11/12 md:w-96" style={{position:"fixed",bottom:"20px",right:"20px",background:"white",boxShadow:"1px 1px 4px black"}}>
             <div className="w-full rounded-t-md p-5 bg-blue-600 text-white flex flex-row space-x-2 items-center justify-center">
                 <p className="font-bold text-xl">WeChat Assistant</p>
                 <i class="fa fa-commenting-o text-2xl"></i>
