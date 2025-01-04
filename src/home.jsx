@@ -11,6 +11,7 @@ export default function Home() {
     const [message, setMessage] = useState("");
     const [isApiCalled, setIsApiCalled] = useState(false);
     const [topics, setTopics] = useState({});
+    const [open, setOpen] = useState(false);
 
     const scrollBottom = (reference)=>{
         reference.current.scrollTop=reference.current.scrollHeight;
@@ -55,7 +56,8 @@ export default function Home() {
 
     useEffect(()=>{
         console.log(topicId)
-        if(topicId){
+        if(topicId && !open){
+            setOpen(true);
             chatWidgetRef.current.classList.remove("hide")
             chatWidgetRef.current.classList.add("show")
             chatBoxRef.current.appendChild(botMessage('Hello! How can I assist you today?'))                
@@ -98,12 +100,25 @@ export default function Home() {
     },[message])
 
     useEffect(()=>{
+        if(open){
+            //nothing
+        }
+        else{
+            if(chatBoxRef.current.innerHTML){
+                chatWidgetRef.current.classList.remove("show")
+                chatWidgetRef.current.classList.add("hide")              
+                chatBoxRef.current.innerHTML = "";
+            }
+        }
+    },[open])
+
+    useEffect(()=>{
         fetchAllTopics()
     },[])
 
     return (
         <>
-            <ChatWidget isApiCalled={isApiCalled} chatWidgetRef={chatWidgetRef} chatBoxRef={chatBoxRef} setMessage={setMessage}/>           
+            <ChatWidget isApiCalled={isApiCalled} setOpen={setOpen} chatWidgetRef={chatWidgetRef} chatBoxRef={chatBoxRef} setMessage={setMessage}/>           
             <div className="z-10 bg-black pl-4 pt-4 pb-4 w-full text-white flex flex-row items-center space-x-3">
                 <img src='logo.png' style={{width:"40px",height:"40px"}}/><p className="text-white text-2xl font-medium">WeChat</p>
             </div>
