@@ -5,7 +5,7 @@ export default function Routes(){
     return(
         useRoutes([
             {
-                path:'/home',
+                path:'/',
                 element:<Home/>
             }
         ])
