@@ -1,0 +1,36 @@
+@keyframes chatwidgetAnim{
+    from{
+        opacity:0;
+        height:0px;
+    }
+    
+    to{
+        opacity:1;
+        height:450px;
+    }
+}
+
+@keyframes chatwidgetAnimReverse{
+    from{
+        opacity:1;
+        height:450px;
+    }    
+    to{
+        opacity:0;
+        height:0px;
+    }
+}
+
+.show{
+    animation: chatwidgetAnim 0.5s linear both
+}
+
+.hide{
+    animation: chatwidgetAnimReverse 0.5s linear both
+}
+
+.zeroOpacity{
+    opacity:0;
+    height:0px;
+}
+
