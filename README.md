@@ -1,4 +1,5 @@
 <h1>WeChat Frontend</h1>
+<p>WeChat backend repo: https://github.com/vishnuKumar3/wechat-backend</p>
 
 <h2>1. Application Name: WeChat</h2>
 
