@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react"
 import ChatWidget from "./components/ChatWidget";
 import "./css/ChatWidget.css"
 import axios from "axios";
+import LoadingComponent from "./components/LoadingContainer";
 
 export default function Home() {
     const [topicId, setTopicId] = useState("");
@@ -10,7 +11,7 @@ export default function Home() {
     const chatBoxRef = useRef(null);
     const [message, setMessage] = useState("");
     const [isApiCalled, setIsApiCalled] = useState(false);
-    const [topics, setTopics] = useState({});
+    const [topics, setTopics] = useState(false);
     const [open, setOpen] = useState(false);
 
     const scrollBottom = (reference)=>{
@@ -122,7 +123,7 @@ export default function Home() {
             <div className="z-10 bg-black pl-4 pt-4 pb-4 w-full text-white flex flex-row items-center space-x-3">
                 <img src='logo.png' style={{width:"40px",height:"40px"}}/><p className="text-white text-2xl font-medium">WeChat</p>
             </div>
-            {Object.entries(topics).map(([topicName, categorizedTopics])=>{
+            {!topics? (Object.entries(topics).map(([topicName, categorizedTopics])=>{
                     return(
                         <div className="p-4">   
             <div className="flex flex-row items-center space-x-5    "><hr style={{border:"1px solid #0003"}} className="flex-1"></hr><p className="text-black font-bold text-2xl">{topicName}</p><hr style={{border:"1px solid #0003"}} className="flex-1"/></div>                              
@@ -137,7 +138,17 @@ export default function Home() {
             </div>
             </div>
             )
-            })}               
+            }))
+            :
+                <div className="pt-6">
+                <p style={{textAlign:"center"}}><b>Note:</b>Used render free tier for backend. So, max it may take 60 sec to fetch data from backend</p>                    
+                <div style={{width:"100%", boxSizing:"border-box", padding:"10px", display:"flex", flexDirection:"row", justifyContent:"space-around", alignItems:"center", flexWrap:"wrap", rowGap:"10px"}}>
+                    {Array.from({ length: 6 }).map((_, index) => (
+                        <LoadingComponent key={index} />
+                    ))}            
+                </div>
+                </div>
+            }               
         </>
     )
 }
