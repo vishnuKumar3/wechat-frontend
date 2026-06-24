@@ -123,7 +123,7 @@ export default function Home() {
             <div className="z-10 bg-black pl-4 pt-4 pb-4 w-full text-white flex flex-row items-center space-x-3">
                 <img src='logo.png' style={{width:"40px",height:"40px"}}/><p className="text-white text-2xl font-medium">WeChat</p>
             </div>
-            {!topics? (Object.entries(topics).map(([topicName, categorizedTopics])=>{
+            {topics? (Object.entries(topics).map(([topicName, categorizedTopics])=>{
                     return(
                         <div className="p-4">   
             <div className="flex flex-row items-center space-x-5    "><hr style={{border:"1px solid #0003"}} className="flex-1"></hr><p className="text-black font-bold text-2xl">{topicName}</p><hr style={{border:"1px solid #0003"}} className="flex-1"/></div>                              
